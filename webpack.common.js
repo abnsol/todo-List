@@ -3,11 +3,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: './src/index.js',
+    app: './src/modules/index.js',
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Production',
+      template: './src/page/template.html', 
+      filename: 'index.html',
     }),
   ],
   module: {
@@ -36,4 +38,5 @@ module.exports = {
     clean: true,
   },
 };
+
 
