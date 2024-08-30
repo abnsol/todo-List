@@ -1,0 +1,123 @@
+#projects{
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+    overflow: auto;
+    padding: 20% 10%;
+    box-shadow: 0 0 5px rgb(172, 172, 172);
+    
+
+    #addProjects{
+        display: flex;
+        gap: 20px;
+        /* border: 1px solid gray; */
+        border-radius: 10px;
+        padding: 5px 10px;
+        box-shadow: 0 0 5px rgb(172, 172, 172);
+
+        button{
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            box-shadow: 0 0 10px rgb(161, 161, 161);
+            background-color: lightblue;
+        }
+
+        button:hover{
+            background-color: rgb(218, 74, 74);
+        }
+    }
+
+    .projectsContainer{
+        display: grid;
+        gap: 30px;
+
+        .projectDiv{
+            box-shadow: 0 0 5px rgb(161, 161, 161);
+            border-radius: 10px;
+            padding: 10px;
+
+            > div > div{
+                border: 0.5px solid lightblue;
+                border-radius: 10px;
+                padding: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 0 3px rgb(199, 241, 255);
+            }
+            
+            .projectBar{
+                display: grid;
+                grid-template: 55% 45%/50% 50%;
+                gap: 5px;
+                margin-bottom: 10px;
+
+                .projectTitle{
+                    grid-column:1/-1;
+                    justify-content: flex-start;
+                    cursor: pointer;
+                    user-select: none;
+                }
+            }
+
+            .projectContentWrapper{
+                display: none;
+
+                > div{
+                    border: none;
+                    display: grid;
+                    padding: 0px;
+                    gap:5px;
+                    box-shadow: none;
+
+                    > div{
+                        box-shadow: 0 0 3px rgb(199, 241, 255);
+                        border: 1px solid lightblue;
+                        border-radius: 10px;
+                        padding: 5px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .openProject{    
+                        button {
+                            border-radius: 10px;
+                            border: none;
+                            max-height: 30px;
+                            width: 100%;
+                            text-align: center;
+                            font-size: 0.9rem;
+                            font-weight: 800;
+                        }
+
+                        button:hover{
+                            background-color: lightblue;
+                        }
+                        
+                    }
+                }
+            }
+        }
+
+        .projectDiv-Open .projectContentWrapper{
+            display: grid;
+            transition: display 1s ease-out;
+        }
+    }
+
+
+}
+
+#project{
+    overflow: auto;
+    display: grid;
+    grid-template-rows: 30% 70%;
+
+    > div {
+        overflow: auto;
+        min-width: 100%;
+    } 
+}
