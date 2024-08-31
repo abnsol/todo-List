@@ -13,10 +13,12 @@
         grid-template-rows: 60% 30%;
         gap: 10px;
         padding: 8px 20px;
+        box-shadow: 0 0 10px lavender;
 
         .projectInfoTitle{
             font-size: 2rem;
             font-weight: 800;
+            font-family: "New Amsterdam",sans-serif;
         }
 
         .projectInfoAdditional{
@@ -92,6 +94,22 @@
                         border: 1px solid rgb(170, 163, 163);
                         background-color: rgb(228, 226, 226);
                         padding: 10px;
+                        border-radius: 10px;
+                        background-color: rgb(238, 225, 225);
+                        display: flex;
+                        gap:20px;
+
+                        button{
+                            border-radius: 10px;
+                            outline: none;
+                            border: none;
+                            background-color: lightblue;
+                            width: 30%;
+                        }
+
+                        button:hover{
+                            opacity: 0.7;
+                        }
                     }
                 }
             }

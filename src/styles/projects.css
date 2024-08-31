@@ -10,6 +10,7 @@
     #addProjects{
         display: flex;
         gap: 20px;
+        align-items: center;
         /* border: 1px solid gray; */
         border-radius: 10px;
         padding: 5px 10px;
@@ -32,6 +33,7 @@
     .projectsContainer{
         display: grid;
         gap: 30px;
+        
 
         .projectDiv{
             box-shadow: 0 0 5px rgb(161, 161, 161);
@@ -39,9 +41,10 @@
             padding: 10px;
 
             > div > div{
+                background-color:rgb(202, 205, 206);
                 border: 0.5px solid lightblue;
                 border-radius: 10px;
-                padding: 5px;
+                padding: 10px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -50,7 +53,7 @@
             
             .projectBar{
                 display: grid;
-                grid-template: 55% 45%/50% 50%;
+                grid-template: 0fr/1fr;
                 gap: 5px;
                 margin-bottom: 10px;
 
@@ -64,22 +67,28 @@
 
             .projectContentWrapper{
                 display: none;
+                min-width: 100%;
 
                 > div{
+                    background-color: transparent;
                     border: none;
                     display: grid;
+                    grid-template:0fr/100%;
                     padding: 0px;
                     gap:5px;
                     box-shadow: none;
 
+
                     > div{
+                        min-width: 100%;
                         box-shadow: 0 0 3px rgb(199, 241, 255);
                         border: 1px solid lightblue;
                         border-radius: 10px;
                         padding: 5px;
                         display: flex;
                         justify-content: center;
-                        align-items: center;
+                        align-items: center;   
+                        background-color: rgb(202, 205, 206);                 
                     }
 
                     .openProject{    
@@ -105,19 +114,9 @@
         .projectDiv-Open .projectContentWrapper{
             display: grid;
             transition: display 1s ease-out;
+            min-width: 100%;
         }
     }
 
 
-}
-
-#project{
-    overflow: auto;
-    display: grid;
-    grid-template-rows: 20% 80%;
-
-    > div {
-        overflow: auto;
-        min-width: 100%;
-    } 
 }
