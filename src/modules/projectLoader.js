@@ -1,7 +1,9 @@
 import { createProject } from "./project";
 import "../styles/projects.css"
+import { displaySingleProject, removeProject } from "./projectTasksLoader";
 
-const projects = [];
+let projects = [];
+let currentOpenProject = 1;
 
 export const projectsDiv = document.createElement("div");
 projectsDiv.setAttribute("id","projects");
@@ -25,6 +27,7 @@ export const newProject = () => {
     //create form
     const project = createProject("Project Title","This is a 50 word long desciptiowoerkwoefkpwerk","00-00-0000","Urgent","very very long note","1");
     project.setID(projects.length + 1);
+    project.addTask("task Title","This is a 50 word long desciptiowoerkwoefkpwerk","00-00-0000","Urgent","very very long note","1");
     projects.push(project);
 
     displayProject();
@@ -40,6 +43,7 @@ export const displayProject = () => {
     projects.forEach((project) => {
         const projectDiv = document.createElement("div");
         projectDiv.setAttribute("class","projectDiv");
+        projectDiv.setAttribute("id",`${project.state.id}`);
 
         const projectBar = document.createElement("div");
         projectBar.setAttribute("class","projectBar");
@@ -93,6 +97,34 @@ export const displayProject = () => {
 export const expandProject = (event) => {
     const expand = event.target.closest(".projectDiv");
     expand.classList.toggle("projectDiv-Open");
+}
+
+export const openClickedProject = (event) => {
+    const clicked = event.target.closest(".projectDiv").id;
+    for (let project of projects){
+        console.log(project.state.id);
+        if (project.state.id == clicked){
+            displaySingleProject(project);
+            currentOpenProject = project.state.id;
+        }
+    }
+}
+
+export const newTask = () => {
+    for (let project of projects){
+        console.log(project.state.id);
+        if (project.state.id == currentOpenProject){
+            project.addTask("new","new","new","new","new","new");
+            displaySingleProject(project);
+        }
+    }
+}
+
+export const deleteProject = () => {
+    projects = projects.filter((project) => project.state.id != currentOpenProject);
+    displayProject();
+    removeProject();
+    currentOpenProject = 1;
 }
 
 projectsDiv.appendChild(addProjects);
