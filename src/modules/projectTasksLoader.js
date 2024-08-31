@@ -48,8 +48,8 @@ export const displaySingleProject = (project) => {
     noteContainer.appendChild(projectNote);
     descriptionContainer.appendChild(descriptionTitle);
     descriptionContainer.appendChild(projectDescription);
-    aboutProject.appendChild(noteContainer);
     aboutProject.appendChild(descriptionContainer);
+    aboutProject.appendChild(noteContainer);
     todo.appendChild(aboutProject);
     singleProject.appendChild(projectInfo);
     singleProject.appendChild(todo);
@@ -63,6 +63,7 @@ const displayTasks = (tasks,todo) => {
         console.log(task)
         const Tasks = document.createElement("div");
         Tasks.setAttribute("class","Tasks");
+        Tasks.setAttribute("id",`${task.getID()}`);
         
         const taskTitle = document.createElement("div");
         taskTitle.setAttribute("class","taskTitle");
@@ -90,12 +91,38 @@ const displayTasks = (tasks,todo) => {
         note.setAttribute("class","note");
         note.textContent = task.state.notes;
 
+        const buttonContainer = document.createElement("div");
+        buttonContainer.setAttribute("class","buttonContainer");
+
+        const deleteTaskButton = document.createElement("button");
+        deleteTaskButton.setAttribute("class","deleteTaskButton");
+        deleteTaskButton.textContent = "Delete";
+
+        const editTaskButton = document.createElement("button");
+        editTaskButton.setAttribute("class","editTaskButton");
+        editTaskButton.textContent = "Edit";
+
+        const taskCompletedButton = document.createElement("button");
+        taskCompletedButton.setAttribute("class","taskCompletedButton");
+        taskCompletedButton.textContent = "Done";
+
+        if (task.state.complete){
+            Tasks.setAttribute("style","background-color:lightgreen;");
+            taskContent.setAttribute("style","background-color:lightgreen;");
+            taskCompletedButton.setAttribute("style","background-color:lightgreen;");
+        }
+
+        buttonContainer.appendChild(editTaskButton);
+        buttonContainer.appendChild(deleteTaskButton);
+        buttonContainer.appendChild(taskCompletedButton);
+
         Tasks.appendChild(taskTitle);
         Tasks.appendChild(dueDate);
         Tasks.appendChild(urgency);
         taskContent.appendChild(description);
         taskContent.appendChild(note);
-        taskContentWrapper.appendChild(taskContent)
+        taskContent.appendChild(buttonContainer);
+        taskContentWrapper.appendChild(taskContent);
         Tasks.appendChild(taskContentWrapper);
 
         console.log(projectTasks);
@@ -120,6 +147,7 @@ const displayProjectInfo = (project,projectInfo) => {
     dueDateContainer.setAttribute("class","dueDateContainer");
     const numberOfTasksContainer = document.createElement("div");
     numberOfTasksContainer.setAttribute("class","numberOfTasksContainer");
+    numberOfTasksContainer.textContent = "Tasks: " + project.state.tasks.length;
 
     projectInfoTitle.textContent = project.state.title;
     urgencyContainer.textContent = project.state.urgent;
@@ -138,7 +166,6 @@ const displayProjectInfo = (project,projectInfo) => {
     addTaskButton.textContent = "Add Task";
     deleteProjectButton.textContent = "Delete Project";
     editProjectButton.textContent = "Edit Project";
-
 
 
 

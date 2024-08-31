@@ -11,5 +11,4 @@ export const editable = (state) => ({
         state.notes = newState.notes;
         state.complete = false;
     }
-    
 })
