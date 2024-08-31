@@ -1,13 +1,13 @@
 import {editable} from "./manageTasks.js";
 
-export function createTask(title,description,dueDate,urgent,notes,id){
+export function createTask(data){
     const state = {
-        title,
-        description,
-        dueDate,
-        urgent,
-        notes,
-        id,
+        title : data.title,
+        description : data.description,
+        dueDate : data.dueDate,
+        urgent : data.urgent,
+        notes : data.notes,
+        id : -1,
         complete : false,
     }
 

@@ -4,6 +4,7 @@ import { displaySingleProject, removeProject } from "./projectTasksLoader";
 
 let projects = [];
 let currentOpenProject = 1;
+let projectIds = 0;
 
 export const projectsDiv = document.createElement("div");
 projectsDiv.setAttribute("id","projects");
@@ -23,16 +24,13 @@ addProjects.appendChild(addProjectText);
 const projectsContainer = document.createElement("div");
 projectsContainer.setAttribute("class","projectsContainer");
 
-export const newProject = () => {
-    //create form
-    const project = createProject("Project Title","This is a 50 word long desciptiowoerkwoefkpwerk","00-00-0000","Urgent","very very long note","1");
-    project.setID(projects.length + 1);
-    project.addTask("task Title","This is a 50 word long desciptiowoerkwoefkpwerk","00-00-0000","Urgent","very very long note","1");
+export const newProject = (data) => {
+    const project = createProject(data);
+    project.setID(++projectIds);
     projects.push(project);
-
+    displaySingleProject(project);
+    currentOpenProject = project.state.id;
     displayProject();
-    console.log("afterProject");
-    console.log(projects);
 }
 
 export const displayProject = () => {
@@ -73,6 +71,11 @@ export const displayProject = () => {
         const note = document.createElement("div");
         note.setAttribute("class","note");
         note.textContent = project.state.notes;
+
+        if (project.markCompleted()){
+            projectDiv.setAttribute("style","background-color:lightgreen;");
+            projectContentWrapper.setAttribute("style","background-color:lightgreen;");
+        }
         
         const openProject = document.createElement("div");
         const button = document.createElement("button");
@@ -102,7 +105,6 @@ export const expandProject = (event) => {
 export const openClickedProject = (event) => {
     const clicked = event.target.closest(".projectDiv").id;
     for (let project of projects){
-        console.log(project.state.id);
         if (project.state.id == clicked){
             displaySingleProject(project);
             currentOpenProject = project.state.id;
@@ -110,22 +112,84 @@ export const openClickedProject = (event) => {
     }
 }
 
-export const newTask = () => {
+export const newTask = (data) => {
     for (let project of projects){
         console.log(project.state.id);
         if (project.state.id == currentOpenProject){
-            project.addTask("new","new","new","new","new","new");
+            project.addTask(data);
             displaySingleProject(project);
+            displayProject();
+        }
+    }
+}
+
+export const editProject = (data) => {
+    for (let project of projects){
+        console.log(project.state.id);
+        if (project.state.id == currentOpenProject){
+            project.changeState(data);
+            displaySingleProject(project);
+            displayProject();
         }
     }
 }
 
 export const deleteProject = () => {
     projects = projects.filter((project) => project.state.id != currentOpenProject);
-    displayProject();
     removeProject();
     currentOpenProject = 1;
+    displayProject();
 }
+
+export const deleteTaskDiv = (event) => {
+    const taskToDelete = event.target.closest(".Tasks").id;
+    for (let project of projects){
+        if (project.state.id == currentOpenProject){
+            project.deleteTask(taskToDelete);
+            displaySingleProject(project);
+            displayProject();
+            console.log(project.state.tasks);
+        }
+    }
+}
+
+export const editTask = (data,ev) => {
+    const taskToEdit = ev.target.closest(".Tasks").id;
+    
+    for (let project of projects){
+        if (project.state.id == currentOpenProject){
+            const task = project.findTask(taskToEdit);
+            task.changeState(data)
+            displaySingleProject(project);
+        }
+    }
+      
+} 
+
+export const markTaskCompleted = (event) => {
+    const doneButton = event.target;
+    const nearestTaskDiv = event.target.closest('.Tasks').id;
+
+    for (let project of projects){
+        if (project.state.id == currentOpenProject){
+            project.completedTask(nearestTaskDiv);
+            displaySingleProject(project);
+            displayProject();
+            console.log(project.state.tasks)
+        }
+    }
+}
+
+const templateData = {
+    title : 'PROJECT TITLE',
+    description : 'Short and brief Description',
+    notes : 'Very long note to remember',
+    dueDate : '00-00-0000',
+    urgent : 'Urgent/Important'
+}
+
+const demoProject = newProject(templateData);
+
 
 projectsDiv.appendChild(addProjects);
 projectsDiv.appendChild (projectsContainer);
