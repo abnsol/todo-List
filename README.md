@@ -16,7 +16,7 @@ This To-Do List project is part of The Odin Project curriculum. It is designed t
 
 ## Live Demo
 
-You can view a live demo of the project [here](https://abnsol.github.io/todo-List.git).
+You can view a live demo of the project [here](https://abnsol.github.io/todo-List/).
 
 
 ## Learning Outcomes
