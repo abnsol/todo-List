@@ -4,7 +4,6 @@ import {expandTask, singleProject} from "./projectTasksLoader.js";
 import { basicModal, displayAddProjectModal, displayAddTasksModal, displayEditProjectModal, displayEditTaskModal } from "./modals.js"
 
 const main = document.querySelector("#main");
-const footer = document.querySelector("footer");
 
 const modal = basicModal();
 

@@ -4,9 +4,6 @@ import { editable, projectMethod, titleMethod } from "./manageTasks"
 
 export const attachMethods = (state) => {
     state.tasks = attachTaskMethod(state.tasks);
-    console.log("state here")
-    console.log(state);
-    console.log(state.tasks)
     return Object.assign(
         {state},
         editable(state),
@@ -28,7 +25,6 @@ export const attachMethodsToTasks = (state) => {
 }
 
 export const attachTaskMethod = (tasks) => {
-    console.log("HEREHEREHERE")
     tasks = tasks.map((task) => task = attachMethodsToTasks(task.state))
     return tasks;
 }

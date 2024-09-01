@@ -31,7 +31,6 @@ export function createProject(data){
 
     //mark task completed
     let completedTask = (id) => {
-        console.log("HERE");
         const task = findTask(id);
         task.toggleComplete();
     }

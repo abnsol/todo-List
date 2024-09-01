@@ -71,7 +71,7 @@ export const projectMethod = (state) => ({
 })
 
 export const titleMethod = (state) => ({
-    getID : () => {state.id},                       
+    getID : () => state.id,                       
     getCompleteStatus : () => state.complete, 
 
     //setComplete
