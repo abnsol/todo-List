@@ -1,7 +1,7 @@
 import {editable} from "./manageTasks.js";
 
 export function createTask(data){
-    const state = {
+    let state = {
         title : data.title,
         description : data.description,
         dueDate : data.dueDate,
@@ -11,11 +11,11 @@ export function createTask(data){
         complete : false,
     }
 
-    const getID = () => state.id;                       
-    const getCompleteStatus = () => state.complete;  
+    let getID = () => state.id;                       
+    let getCompleteStatus = () => state.complete;  
 
     //setComplete
-    const toggleComplete = () => {
+    let toggleComplete = () => {
         if (state.complete){
             state.complete = false;
         }else{

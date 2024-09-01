@@ -68,18 +68,6 @@ export const basicModal = () => {
     form.appendChild(urgentLabel);
     form.appendChild(urgentInput);
 
-    // const labels = ["title","description","dueDate","urgent","notes"];
-    // labels.forEach((item) => {
-    //     const label = document.createElement("label");
-    //     label.textContent = item;
-    //     label.setAttribute("for",`${item}`)
-    //     const input = document.createElement("input");
-    //     input.setAttribute("id",`${item}`);
-    //     input.setAttribute("name",`${item}`);
-    //     form.appendChild(label);
-    //     form.appendChild(input);
-    // })
-
     const doneButton = document.createElement("button");
     doneButton.setAttribute("class","doneButton");
     doneButton.setAttribute("type","submit")

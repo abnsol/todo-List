@@ -1,5 +1,6 @@
-import {editable} from "./manageTasks.js";
+import {editable, projectMethods} from "./manageTasks.js";
 import { createTask } from "./todo.js";
+
 
 export function createProject(data){
     let state = {
@@ -11,32 +12,35 @@ export function createProject(data){
         id : -1,
         complete : false,
         tasks : [],
+        tasksIds : 0
     }
 
-    let taskIds = 0;
+    // let taskIds = 0;
     // console.log(typeof(state.dueDate));
-    // isDue();
+    //isDue();
 
     //add tasks in project
-    const addTask = (data) => {
+    let addTask = (data) => {
         const task = createTask(data);
-        task.setID(++taskIds); // task id == index
+        task.setID(++state.tasksIds); // task id == index
         state.tasks.push(task);
     } 
 
     //delete task from project
-    const deleteTask = (id) => {
-        state.tasks = state.tasks.filter((task) => task.getID() != id);
+    let deleteTask = (id) => {
+        state.tasks = state.tasks.filter((task) => task.state.id != id);
+        return state.tasks;
     }
 
     //mark task completed
-    const completedTask = (id) => {
+    let completedTask = (id) => {
+        console.log("HERE");
         const task = findTask(id);
         task.toggleComplete();
     }
 
     //find task by id
-    const findTask = (id) => {
+    let findTask = (id) => {
         for (let task of state.tasks){
             if (task.getID() == id) {
                 return task;
@@ -45,7 +49,7 @@ export function createProject(data){
     }
 
     //automatically mark project as completed
-    const markCompleted = () => {
+    let markCompleted = () => {
         if (state.tasks.length == 0) return false;
 
         for (let task of state.tasks){
@@ -62,6 +66,6 @@ export function createProject(data){
             findTask,
             state
         },
-        editable(state),
+        editable(state)
     )
 }

@@ -1,5 +1,6 @@
 import {} from "./project.js";
 import "../styles/singleProject.css";
+import { attachTaskMethod } from "./attachMethods.js";
 
 
 export const singleProject = document.createElement("div");
@@ -60,10 +61,11 @@ const displayTasks = (tasks,todo) => {
     projectTasks.setAttribute("class","projectTasks");
 
     tasks.forEach((task) => {
-        console.log(task)
+        console.log("BIG DATA");
+        console.log(task.state.id)
         const Tasks = document.createElement("div");
         Tasks.setAttribute("class","Tasks");
-        Tasks.setAttribute("id",`${task.getID()}`);
+        Tasks.setAttribute("id",`${Number(task.state.id)}`);
         
         const taskTitle = document.createElement("div");
         taskTitle.setAttribute("class","taskTitle");

@@ -1,6 +1,7 @@
 import { createProject } from "./project";
 import "../styles/projects.css"
 import { displaySingleProject, removeProject } from "./projectTasksLoader";
+import { attachProjectMethod } from "./attachMethods";
 
 let projects = [];
 let currentOpenProject = 1;
@@ -30,9 +31,10 @@ export const newProject = (data) => {
     projects.push(project);
     displaySingleProject(project);
     currentOpenProject = project.state.id;
+    saveProjectsToLocalStorage();
+    saveProjectIds();
 
     project.isDue();
-
     displayProject();
 }
 
@@ -40,6 +42,8 @@ export const displayProject = () => {
     while (projectsContainer.firstChild){
         projectsContainer.removeChild(projectsContainer.firstChild);
     }
+    saveProjectsToLocalStorage();  
+    // loadProjectsFromLocalStorage();  
 
     projects.forEach((project) => {
         const projectDiv = document.createElement("div");
@@ -67,14 +71,15 @@ export const displayProject = () => {
         const projectContent = document.createElement("div");
         projectContent.setAttribute("class","projectContent");
 
-        const description = document.createElement("div");
-        description.setAttribute("class","description");
-        description.textContent = project.state.description;
+        // const description = document.createElement("div");
+        // description.setAttribute("class","description");
+        // description.textContent = project.state.description;
         
-        const note = document.createElement("div");
-        note.setAttribute("class","note");
-        note.textContent = project.state.notes;
+        // const note = document.createElement("div");
+        // note.setAttribute("class","note");
+        // note.textContent = project.state.notes;
 
+        console.log(project);
         if (project.markCompleted()){
             projectDiv.setAttribute("style","background-color:lightgreen;");
             projectContentWrapper.setAttribute("style","background-color:lightgreen;");
@@ -93,8 +98,8 @@ export const displayProject = () => {
         projectBar.appendChild(projectTitle);
         projectBar.appendChild(dueDate);
         projectBar.appendChild(urgency);
-        projectContent.appendChild(description);
-        projectContent.appendChild(note);
+        // projectContent.appendChild(description);
+        // projectContent.appendChild(note);
         projectContent.appendChild(openProject);
         projectContentWrapper.appendChild(projectContent)
         projectDiv.appendChild(projectBar);
@@ -131,6 +136,7 @@ export const newTask = (data) => {
 
 export const editProject = (data) => {
     for (let project of projects){
+        console.log("project.id")
         console.log(project.state.id);
         if (project.state.id == currentOpenProject){
             project.changeState(data);
@@ -151,7 +157,9 @@ export const deleteTaskDiv = (event) => {
     const taskToDelete = event.target.closest(".Tasks").id;
     for (let project of projects){
         if (project.state.id == currentOpenProject){
-            project.deleteTask(taskToDelete);
+            console.log("projects");
+            console.log(project);
+            project.state.tasks = project.deleteTask(taskToDelete);
             displaySingleProject(project);
             displayProject();
             console.log(project.state.tasks);
@@ -168,8 +176,7 @@ export const editTask = (data,ev) => {
             task.changeState(data)
             displaySingleProject(project);
         }
-    }
-      
+    }      
 } 
 
 export const markTaskCompleted = (event) => {
@@ -186,17 +193,38 @@ export const markTaskCompleted = (event) => {
     }
 }
 
-const templateData = {
-    title : 'PROJECT X',
-    description : 'Short and brief Description',
-    notes : 'Very long note to remember',
-    dueDate : '2100-12-21',
-    urgent : 'Urgent/Important'
-}
-
-const demoProject = newProject(templateData);
-
-
 projectsDiv.appendChild(addProjects);
 projectsDiv.appendChild (projectsContainer);
 
+const loadProjectsFromLocalStorage = () => {
+    const storedProjects = JSON.parse(localStorage.getItem('projects'));
+
+    if (storedProjects) {
+        projects = attachProjectMethod(storedProjects);
+        projectIds = Number(localStorage.getItem('projectIds'));
+    } else {
+        const templateData = {
+            title : 'PROJECT X',
+            description : 'Short and brief Description',
+            notes : 'Very long note to remember',
+            dueDate : '2100-12-21',
+            urgent : 'Urgent/Important'
+        }
+
+        const demoProject = newProject(templateData);
+        localStorage.setItem('projects', JSON.stringify(projects));
+        localStorage.setItem('projectIds',projectIds);
+    }
+
+    displayProject();
+};
+
+const saveProjectsToLocalStorage = () => {
+    localStorage.setItem('projects', JSON.stringify(projects));
+};
+
+const saveProjectIds = () => {
+    localStorage.setItem('projectIds',projectIds);
+}
+
+loadProjectsFromLocalStorage();
