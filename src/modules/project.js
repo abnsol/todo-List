@@ -39,7 +39,7 @@ export function createProject(data){
     //find task by id
     let findTask = (id) => {
         for (let task of state.tasks){
-            if (task.getID() == id) {
+            if (task.state.id == id) {
                 return task;
             }
         }
