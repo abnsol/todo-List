@@ -43,7 +43,6 @@ export const displayProject = () => {
         projectsContainer.removeChild(projectsContainer.firstChild);
     }
     saveProjectsToLocalStorage();  
-    // loadProjectsFromLocalStorage();  
 
     projects.forEach((project) => {
         const projectDiv = document.createElement("div");
@@ -79,7 +78,6 @@ export const displayProject = () => {
         // note.setAttribute("class","note");
         // note.textContent = project.state.notes;
 
-        console.log(project);
         if (project.markCompleted()){
             projectDiv.setAttribute("style","background-color:lightgreen;");
             projectContentWrapper.setAttribute("style","background-color:lightgreen;");
@@ -125,7 +123,6 @@ export const openClickedProject = (event) => {
 
 export const newTask = (data) => {
     for (let project of projects){
-        console.log(project.state.id);
         if (project.state.id == currentOpenProject){
             project.addTask(data);
             displaySingleProject(project);
@@ -136,8 +133,6 @@ export const newTask = (data) => {
 
 export const editProject = (data) => {
     for (let project of projects){
-        console.log("project.id")
-        console.log(project.state.id);
         if (project.state.id == currentOpenProject){
             project.changeState(data);
             displaySingleProject(project);
@@ -157,12 +152,9 @@ export const deleteTaskDiv = (event) => {
     const taskToDelete = event.target.closest(".Tasks").id;
     for (let project of projects){
         if (project.state.id == currentOpenProject){
-            console.log("projects");
-            console.log(project);
             project.state.tasks = project.deleteTask(taskToDelete);
             displaySingleProject(project);
             displayProject();
-            console.log(project.state.tasks);
         }
     }
 }
@@ -188,7 +180,6 @@ export const markTaskCompleted = (event) => {
             project.completedTask(nearestTaskDiv);
             displaySingleProject(project);
             displayProject();
-            console.log(project.state.tasks)
         }
     }
 }

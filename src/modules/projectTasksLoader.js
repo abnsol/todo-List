@@ -61,8 +61,6 @@ const displayTasks = (tasks,todo) => {
     projectTasks.setAttribute("class","projectTasks");
 
     tasks.forEach((task) => {
-        console.log("BIG DATA");
-        console.log(task.state.id)
         const Tasks = document.createElement("div");
         Tasks.setAttribute("class","Tasks");
         Tasks.setAttribute("id",`${Number(task.state.id)}`);

@@ -6,8 +6,6 @@ import { basicModal, displayAddProjectModal, displayAddTasksModal, displayEditPr
 const main = document.querySelector("#main");
 const footer = document.querySelector("footer");
 
-// newProject();
-
 const modal = basicModal();
 
 main.appendChild(projectsDiv);
@@ -40,10 +38,8 @@ const callEditTaskModal = (e) => {
 
 // expand/collapse project
 addGlobalEventListeners("click",".projectTitle",expandProject);
-// addGlobalEventListeners('click','button#addProject',newProject);
 addGlobalEventListeners("click","button.openProject",openClickedProject);
 addGlobalEventListeners('click','.taskTitle',expandTask);
-// addGlobalEventListeners('click','.addTaskButton',newTask);
 addGlobalEventListeners('click','.addTaskButton',callAddTasksModal);
 addGlobalEventListeners('click','button#addProject',callAddProjectModal);
 addGlobalEventListeners('click','.editProjectButton',callEditProjectModal);
