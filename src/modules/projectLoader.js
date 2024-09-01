@@ -30,6 +30,9 @@ export const newProject = (data) => {
     projects.push(project);
     displaySingleProject(project);
     currentOpenProject = project.state.id;
+
+    project.isDue();
+
     displayProject();
 }
 
@@ -75,6 +78,9 @@ export const displayProject = () => {
         if (project.markCompleted()){
             projectDiv.setAttribute("style","background-color:lightgreen;");
             projectContentWrapper.setAttribute("style","background-color:lightgreen;");
+        }else if(!project.isDue()){
+            projectDiv.setAttribute("style","background-color:#bd4949; color:red;");
+            projectContentWrapper.setAttribute("style","background-color:#bd4949; color:red;");
         }
         
         const openProject = document.createElement("div");
@@ -181,10 +187,10 @@ export const markTaskCompleted = (event) => {
 }
 
 const templateData = {
-    title : 'PROJECT TITLE',
+    title : 'PROJECT X',
     description : 'Short and brief Description',
     notes : 'Very long note to remember',
-    dueDate : '00-00-0000',
+    dueDate : '2100-12-21',
     urgent : 'Urgent/Important'
 }
 

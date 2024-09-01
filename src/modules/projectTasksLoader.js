@@ -110,6 +110,10 @@ const displayTasks = (tasks,todo) => {
             Tasks.setAttribute("style","background-color:lightgreen;");
             taskContent.setAttribute("style","background-color:lightgreen;");
             taskCompletedButton.setAttribute("style","background-color:lightgreen;");
+        }else if(!task.isDue()){
+            Tasks.setAttribute("style","background-color:#bd4949; color:red;");
+            taskContent.setAttribute("style","background-color:#bd4949;");
+            taskCompletedButton.setAttribute("style","background-color:#bd4949;");
         }
 
         buttonContainer.appendChild(editTaskButton);
@@ -125,7 +129,6 @@ const displayTasks = (tasks,todo) => {
         taskContentWrapper.appendChild(taskContent);
         Tasks.appendChild(taskContentWrapper);
 
-        console.log(projectTasks);
         projectTasks.appendChild(Tasks);
     })
     todo.appendChild(projectTasks);

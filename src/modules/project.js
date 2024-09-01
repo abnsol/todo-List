@@ -14,6 +14,8 @@ export function createProject(data){
     }
 
     let taskIds = 0;
+    // console.log(typeof(state.dueDate));
+    // isDue();
 
     //add tasks in project
     const addTask = (data) => {
