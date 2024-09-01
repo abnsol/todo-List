@@ -30,7 +30,13 @@ body {
     display: grid;
     grid-template: 92vh 8vh/1fr;
     font-family: monospace;
+    font-weight: 700;
     font-size: 0.7rem;
+    color: black;
+    button{
+        color: black;
+    } 
+    background-color: #040725;
 
     #main{
         display: grid;
@@ -39,7 +45,7 @@ body {
     }
 
     footer{
-        box-shadow: 0 0 5px lightgray;
+        box-shadow: 0 0 5px rgb(68, 68, 68);
     }
 }
 

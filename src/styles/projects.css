@@ -4,7 +4,7 @@
     gap:30px;
     overflow: auto;
     padding: 20% 10%;
-    box-shadow: 0 0 5px rgb(172, 172, 172);
+    box-shadow: 0 0 5px rgb(37, 35, 65);
     
 
     #addProjects{
@@ -14,14 +14,15 @@
         /* border: 1px solid gray; */
         border-radius: 10px;
         padding: 5px 10px;
-        box-shadow: 0 0 5px rgb(172, 172, 172);
+        box-shadow: 0 0 5px rgb(61, 59, 59);
+        color: white;
 
         button{
             width: 30px;
             height: 30px;
             border-radius: 50%;
             border: none;
-            box-shadow: 0 0 10px rgb(161, 161, 161);
+            box-shadow: 0 0 10px rgb(75, 72, 72);
             background-color: lightblue;
         }
 
@@ -32,13 +33,15 @@
 
     .projectsContainer{
         display: grid;
-        gap: 30px;
+        gap: 20px;
         
 
         .projectDiv{
-            box-shadow: 0 0 5px rgb(161, 161, 161);
+            box-shadow: 0 0 5px rgb(88, 85, 85);
             border-radius: 10px;
             padding: 10px;
+            display: grid;
+            gap: 5px;
 
             > div > div{
                 background-color:rgb(202, 205, 206);
@@ -49,6 +52,7 @@
                 align-items: center;
                 justify-content: center;
                 box-shadow: 0 0 3px rgb(199, 241, 255);
+                color: black;
             }
             
             .projectBar{
@@ -88,7 +92,8 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;   
-                        background-color: rgb(202, 205, 206);                 
+                        background-color: rgb(202, 205, 206); 
+                        font-family: "Roboto",sans-serif;              
                     }
 
                     .openProject{    
@@ -98,7 +103,7 @@
                             max-height: 30px;
                             width: 100%;
                             text-align: center;
-                            font-size: 0.9rem;
+                            font-size: 0.7rem;
                             font-weight: 800;
                         }
 

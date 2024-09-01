@@ -13,12 +13,13 @@
         grid-template-rows: 60% 30%;
         gap: 10px;
         padding: 8px 20px;
-        box-shadow: 0 0 10px lavender;
+        box-shadow: 0 0 5px rgb(100, 100, 100);
 
         .projectInfoTitle{
             font-size: 2rem;
             font-weight: 800;
             font-family: "New Amsterdam",sans-serif;
+            color: white;
         }
 
         .projectInfoAdditional{
@@ -29,10 +30,15 @@
             div{
                 
                 div,button {
-                    background-color: lightgrey;
+                    background-color: white;
                     border-radius: 10px;
                     border: none;
                     padding: 2px 10px;
+                    color: black;
+                }
+
+                button{
+                    background-color: aquamarine;
                 }
 
                 button:hover{
@@ -82,7 +88,7 @@
                 .taskContentWrapper{
                     display: none;
                     border: none;
-                    background-color: white;
+                    background-color: transparent;
                     padding: 0px;
 
                     > div{
@@ -137,8 +143,16 @@
             .projectNote,.projectDescription{
                 padding: 10px;
                 overflow: auto;
-                box-shadow: 0 0 5px lightblue;
+                box-shadow: 0 0 5px rgb(68, 70, 70);
+                background-color: rgb(201, 201, 201);
+                color: black;
                 height: 200px;
+                border-radius: 10px;
+                font-family: "Roboto",sans-serif;
+            }
+
+            .descriptionTitle,.noteTitle{
+                color: white;
             }
         }
     }
