@@ -46,6 +46,9 @@ body {
 
     footer{
         box-shadow: 0 0 5px rgb(68, 68, 68);
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
